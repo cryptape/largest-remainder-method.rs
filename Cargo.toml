@@ -1,8 +1,9 @@
 [package]
 name = "largest-remainder-method"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["u2 <zhangyaning1985@gmail.com>"]
 description = "The largest remainder method"
 license = "MIT"
-
-[dependencies]
+repository = "https://github.com/u2/largest-remainder-method.rs"
+keywords = ["Largest remainder method", "hare-niemeyer-method", "hamilton-method", "voting", "elections"]
+categories = ["algorithms"]
