@@ -1,7 +1,7 @@
 use std::cmp::Ordering;
 
-pub fn apportion(votes: &Vec<u64>, seat_number: u64) -> Vec<u64> {
-    let total = votes.iter().fold(0, |acc, &x| acc + x);
+pub fn apportion(votes: &[u64], seat_number: u64) -> Vec<u64> {
+    let total: u64 = votes.iter().sum();
     let hare_quota = total as f64 / seat_number as f64;
 
     let votes_quota: Vec<f64> = votes
@@ -18,7 +18,8 @@ pub fn apportion(votes: &Vec<u64>, seat_number: u64) -> Vec<u64> {
         .map(|(i, v)| (v.fract(), i as u64))
         .collect();
 
-    let remaining_seat: u64 = seat_number - seats.iter().fold(0, |acc, &x| acc + x);
+    let total_seat: u64 = seats.iter().sum();
+    let remaining_seat: u64 = seat_number - total_seat;
 
     remainders.sort_by(|a, b| a.0.partial_cmp(&b.0).unwrap_or(Ordering::Equal));
     remainders.reverse();
@@ -36,6 +37,7 @@ pub fn apportion(votes: &Vec<u64>, seat_number: u64) -> Vec<u64> {
     seats
 }
 
+// https://en.wikipedia.org/wiki/Largest_remainder_method#Examples
 #[cfg(test)]
 mod tests {
     use super::apportion;
